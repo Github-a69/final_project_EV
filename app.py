@@ -208,7 +208,7 @@ model = joblib.load('best_model.pkl')
 
 # Dividing the webage into multiple sections
 
-page=st.sidebar.radio('choose an option',['Overview','Analysis','prediction'])
+page=st.sidebar.radio('choose an option',['Overview','Analysis','Prediction'])
 
 
 if page == 'Overview':
@@ -256,7 +256,8 @@ elif page == 'Analysis':
     with tab_2:
 
         group = df.groupby('electric vehicle type')['electric range'].mean().reset_index()
-        bar_1 = px.bar(group,y='electric vehicle type',x='electric range',barmode='group',template='plotly_dark')
+        bar_1 = px.bar(group,y='electric vehicle type',x='electric range',barmode='group'
+                       ,template='plotly_dark')
         st.plotly_chart(bar_1,use_container_width=True)
 
 
@@ -274,14 +275,14 @@ elif page == 'Analysis':
         st.plotly_chart(pie,use_container_width=True)
 
     with tab_5 :
-        fig= px.histogram(df,x='electric range',nbins=10,
-                     color_discrete_sequence=['steelblue'],template='plotly_dark')
+        fig= px.histogram(df,x='electric range',nbins=5,
+                     color_discrete_sequence=['slateblue'],template='plotly_dark')
         st.plotly_chart(fig,use_container_width = True)
 
     with tab_6 :
 
         fig_2 = px.histogram(df,x='clean alternative fuel vehicle (cafv) eligibility',
-                     color='electric vehicle type',template='plotly_dark')
+                     color='electric vehicle type',color_discrete_sequence= ['royalblue','blueviolet'],template='plotly_dark')
         st.plotly_chart(fig_2,use_container_width = True)            
 
 
